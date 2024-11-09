@@ -22,7 +22,7 @@
         "name": "Passive Infrared",
         "description": "A passive infrared sensor. When 'true' someone is present.",
         "value": true,
-        "gpio": 1529
+        "gpio": 529
       }
     },
     "actuators": {
