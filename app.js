@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const pi = require('./routes/pi')
 const ejsMate = require('ejs-mate')
 const { Gpio } = require('onoff');
+const { exec } = require('child_process');
 
 const PORT = process.env.PORT || 5001
 const lightPin = new Gpio(529, 'out');
@@ -46,6 +47,23 @@ io.on('connection', (socket) => {
 });
 app.use('/pi',pi)
 app.get('/',(re,res)=>res.render('home'))
+app.get('/camera',(req,res)=>{
+    res.render('sensors/camera')
+})
+app.post('/camera',(req,res)=>{
+    exec('libcamera-jpeg -o images/image.jpeg', (error, stdout, stderr) => {
+        if (error) {
+          console.error(`exec error: ${error}`);
+          return;
+        }
+        if (stderr) {
+          console.error(`stderr: ${stderr}`);
+          return;
+        }
+        console.log(`stdout: ${stdout}`);
+        res.redirect('/camera')
+      });
+})
 
 app.listen(PORT,'0.0.0.0',()=>console.log(`listening on port ${PORT}!`))
   
