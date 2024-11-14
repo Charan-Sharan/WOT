@@ -1,4 +1,5 @@
 const express = require('express')
+const http = require('http');
 const app =  express()
 const path = require('path')
 const socketIo = require('socket.io');
@@ -45,5 +46,5 @@ io.on('connection', (socket) => {
 app.use('/pi',pi)
 app.get('/',(re,res)=>res.render('home'))
 
-app.listen(PORT,()=>console.log(`listening on port ${PORT}!`))
+app.listen(PORT,'0.0.0.0',()=>console.log(`listening on port ${PORT}!`))
   
