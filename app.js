@@ -56,16 +56,7 @@ app.get('/camera',(req,res)=>{
     res.render('sensors/camera')
 })
 app.post('/camera',(req,res)=>{
-    exec('libcamera-jpeg -o images/image.jpeg', (error, stdout, stderr) => {
-        if (error) {
-          console.error(`exec error: ${error}`);
-          return;
-        }
-        if (stderr) {
-          console.error(`stderr: ${stderr}`);
-          return;
-        }
-        console.log(`stdout: ${stdout}`);
+    exec('libcamera-jpeg -o public/images/image.jpeg', (error, stdout, stderr) => {
         res.redirect('/camera')
       });
 })
