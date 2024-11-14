@@ -34,6 +34,7 @@ io.on('connection', (socket) => {
 
     socket.on('changeColor', (color) => {
         const { r, g, b } = color;
+        console.log("Color changed")
         redPin.writeSync(r ? 1 : 0);
         greenPin.writeSync(g ? 1 : 0);
         bluePin.writeSync(b ? 1 : 0);
