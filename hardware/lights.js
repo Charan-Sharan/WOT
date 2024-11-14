@@ -8,5 +8,6 @@ var val=0
 const toggle = ()=>{
     var val = 1- val;
     greenPin.writeSync(val ? 0 : 1);
+    console.log("Light toggled: ",val)
 }
 module.exports=toggle
