@@ -9,10 +9,10 @@ const ejsMate = require('ejs-mate')
 const { Gpio } = require('onoff');
 
 const PORT = process.env.PORT || 5001
-const lightPin = new Gpio(17, 'out');
-const redPin = new Gpio(18, 'out');  
-const greenPin = new Gpio(22, 'out'); 
-const bluePin = new Gpio(23, 'out');
+const lightPin = new Gpio(529, 'out');
+const redPin = new Gpio(530, 'out');  
+const greenPin = new Gpio(534, 'out'); 
+const bluePin = new Gpio(535, 'out');
 
 const server = http.createServer(app);
 const io = socketIo(server);
