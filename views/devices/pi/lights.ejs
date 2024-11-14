@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate') %>
+<h1>Control the Room lights</h1>
+<form action="/pi/lights" method="POST">
+    <button class="btn btn-danger" id="lightToggle">Light toggle</button>
+    <!-- <button class="btn btn-success">ON</button> -->
+    <br>
+    <label for="exampleColorInput" class="form-label">Color picker</label>
+    <input type="color" class="form-control form-control-color" id="colorPicker" value="#563d7c" title="Choose your color">
+    <script>
+        const socket = io();
+        const lightToggle = document.getElementById('lightToggle');
+        const colorPicker = document.getElementById('colorPicker');
+        
+        let lightOn = false;
+
+        // Handle the light toggle button
+        lightToggle.addEventListener('click', () => {
+            lightOn = !lightOn;
+            socket.emit('toggleLight', lightOn);
+            lightToggle.textContent = lightOn ? 'Turn Light Off' : 'Turn Light On';
+        });
+
+        // Handle the color picker
+        colorPicker.addEventListener('input', (event) => {
+            const hexColor = event.target.value;
+            const rgb = hexToRgb(hexColor);
+            socket.emit('changeColor', rgb);
+        });
+
+        // Function to convert hex to RGB
+        function hexToRgb(hex) {
+            const bigint = parseInt(hex.slice(1), 16);
+            return {
+                r: (bigint >> 16) & 255,
+                g: (bigint >> 8) & 255,
+                b: bigint & 255
+            };
+        }
+    </script>
