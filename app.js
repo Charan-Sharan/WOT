@@ -9,8 +9,8 @@ const pi = require('./routes/pi')
 const ejsMate = require('ejs-mate')
 const { Gpio } = require('onoff');
 const { exec } = require('child_process');
-const i2cBus = require('i2c-bus');
-const oled = require('oled-display');
+//const i2cBus = require('i2c-bus');
+//const oled = require('oled-display');
 
 const PORT = process.env.PORT || 5001
 const lightPin = new Gpio(529, 'out');
@@ -18,8 +18,8 @@ const redPin = new Gpio(530, 'out');
 const greenPin = new Gpio(534, 'out'); 
 const bluePin = new Gpio(535, 'out');
 app.use(bodyParser.urlencoded({ extended: true }));
-const i2c = i2cBus.openSync(1); // Open I2C bus 1
-const oledDisplay = new oled(i2c, { width: 128, height: 64, address: 0x3C });
+//const i2c = i2cBus.openSync(1); // Open I2C bus 1
+//const oledDisplay = new oled(i2c, { width: 128, height: 64, address: 0x3C });
 const server = http.createServer(app);
 const io = socketIo(server);
 
@@ -65,11 +65,11 @@ app.post('/display', (req, res) => {
     console.log('Text received:', text);
 
     // Clear the display
-    oledDisplay.clearDisplay();
+  //  oledDisplay.clearDisplay();
     
     // Write the text to the OLED (you can split the text to multiple lines if it's too long)
-    oledDisplay.setCursor(1, 1);
-    oledDisplay.writeString(oledDisplay.fonts['6x8'], 1, 1, text, 1, false, 255);
+    //oledDisplay.setCursor(1, 1);
+    //oledDisplay.writeString(oledDisplay.fonts['6x8'], 1, 1, text, 1, false, 255);
 
     // Redirect back to the form
     res.redirect('/');
