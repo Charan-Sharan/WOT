@@ -6,7 +6,7 @@ router.route('/').get((req,res)=>{
 })
 // router.route('/camera').get((req,res)=>res.render('camera'))
 router.route('/lights')
-.get((req,res)=>res.render('devices/pi/lights'))
+.get((req,res)=>res.render('devices/pi/lights',{title:"lights"}))
 .post((req,res)=>{
     toggle()
     res.redirect('/pi/lights')

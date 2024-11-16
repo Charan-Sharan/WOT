@@ -51,7 +51,7 @@ io.on('connection', (socket) => {
     });
 });
 app.use('/pi',pi)
-app.get('/',(re,res)=>res.render('home'))
+app.get('/',(re,res)=>res.render('home',{title:"home"}))
 app.get('/camera',(req,res)=>{
     res.render('sensors/camera')
 })
