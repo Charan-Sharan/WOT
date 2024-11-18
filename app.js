@@ -26,12 +26,12 @@ app.set('views',path.join(__dirname,'views'))
 io.on('connection', (socket) => {
     console.log('A user connected');
 
-    socket.on('rgb', (rgb) => {
-        const parsedColor = parseInt(color.replace('#', ''), 16);
+     socket.on('color', (rgb) => {
+        const parsedColor = parseInt(rgb.replace('#', ''), 16);
         const r = ( parsedColor & 0xff0000 ) >> 16
         const g = ( parsedColor & 0x00ff00 ) >>8
         const b = parsedColor & 0x0000ff
-        console.log(`${color}=> r : ${r} || g : ${g} || b : ${b}`)
+        console.log(`${rgb}=> r : ${r} || g : ${g} || b : ${b}`)
     });
     socket.on('ACval',(val)=>{
         console.log('ACval : ',val )
@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
 app.get('/',(re,res)=>res.render('home',{title:"home"}))
 app.use('/pi',pi)
 app.get('/camera',(req,res)=>{
-    res.render('sensors/camera')
+    res.render('sensors/camera',{title:"camera"})
 })
 app.get('/ac',(req,res)=>{
     res.render('devices/ac.ejs')

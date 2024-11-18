@@ -6,7 +6,7 @@
     const colorIP = document.getElementById('color')
     const socket = io()
     colorIP.addEventListener('input',()=>{
-        const rgb = colorIP.value()
+        const rgb = colorIP.value
         socket.emit('color',rgb)
     })
 </script>

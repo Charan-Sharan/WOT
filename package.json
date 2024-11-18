@@ -20,6 +20,7 @@
     "nodemon": "^3.1.7",
     "oled-display": "^1.0.25",
     "onoff": "^6.0.3",
+    "pigpio": "^3.3.1",
     "socket.io": "^4.7.5"
   }
 }
