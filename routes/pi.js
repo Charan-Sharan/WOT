@@ -11,7 +11,8 @@ router.route('/lights')
     toggle()
     res.redirect('/pi/lights')
 })
-router.route('/rgblights',(req,res)=>{
+router.route('/rgblights')
+.get((req,res)=>{
     res.render('/pi/rgblights')
 })
 
