@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const toggle = require('../hardware/lights')
+const toggle = require('../hardware/internal/lights')
 router.route('/').get((req,res)=>{
     res.status(200).render('devices/pi',{title:"pi"})
 })
@@ -10,6 +10,9 @@ router.route('/lights')
 .post((req,res)=>{
     toggle()
     res.redirect('/pi/lights')
+})
+router.route('/rgblights',(req,res)=>{
+    res.render('/pi/rgblights')
 })
 
 module.exports = router

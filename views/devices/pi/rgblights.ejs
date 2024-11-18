@@ -1,0 +1,12 @@
+<% layout('layouts/boilerplate') %>
+<h1>RGB lighting</h1>
+<input type="color" name="color" id="color">\
+<script src="/socket.io/scoket.io.js"></script>
+<script>
+    const colorIP = document.getElementById('color')
+    const socket = io()
+    colorIP.addEventListener('input',()=>{
+        const rgb = colorIP.value()
+        socket.emit('color',rgb)
+    })
+</script>
