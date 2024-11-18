@@ -13,7 +13,7 @@ router.route('/lights')
 })
 router.route('/rgblights')
 .get((req,res)=>{
-    res.render('/pi/rgblights')
+    res.render('devices/pi/rgblights')
 })
 
 module.exports = router
