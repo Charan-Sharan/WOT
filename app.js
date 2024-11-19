@@ -41,6 +41,13 @@ app.use('/pi',pi)
 app.get('/camera',(req,res)=>{
     res.render('sensors/camera')
 })
+app.get('/ac',(req,res)=>{
+    res.render('devices/ac.ejs')
+})
+app.get('/ac/:val',(req,res)=>{
+    const {val} = req.params;
+    console.log('val : ',val )
+})
 app.post('/camera',(req,res)=>{
     exec('libcamera-jpeg -o public/images/image.jpeg', (error, stdout, stderr) => {
         res.redirect('/camera')
