@@ -33,6 +33,9 @@ io.on('connection', (socket) => {
         const b = parsedColor & 0x0000ff
         console.log(`${color}=> r : ${r} || g : ${g} || b : ${b}`)
     });
+    socket.on('ACval',(val)=>{
+        console.log('ACval : ',val )
+    })
 });
 
 
@@ -43,10 +46,6 @@ app.get('/camera',(req,res)=>{
 })
 app.get('/ac',(req,res)=>{
     res.render('devices/ac.ejs')
-})
-app.get('/ac/:val',(req,res)=>{
-    const {val} = req.params;
-    console.log('val : ',val )
 })
 app.post('/camera',(req,res)=>{
     exec('libcamera-jpeg -o public/images/image.jpeg', (error, stdout, stderr) => {
