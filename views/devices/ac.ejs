@@ -7,7 +7,6 @@
   <style>
     .root{
         display: flex;
-        height: 90vh;
         align-items: center;
         justify-content: center;
     }
@@ -52,9 +51,8 @@
   </style>
 </head>
 <body class="">
-	  <%- include('../partials/navbar') %>    
-<h3 class="container"> Control AC settings</h3>
-<div class="container root px-4">
+    <%- include('../partials/navbar') %>
+    <div class="container root px-4">
     <div class="row">
          <div class="col"> <div class="row flex-column">
             <div class="col"><button id="pwrbtn" class="button"><img class="btn-img" src="/images/on-off-button.png" alt="" ></button></div>
@@ -82,6 +80,8 @@
     const pwrbtn = document.getElementById('pwrbtn')
     const swingbtn = document.getElementById('swingbtn')
     const display = document.querySelector('.display')
+    let power_state = "0"
+    let swing_state = "0"
     const send = (val)=>{
             socket.emit('ACval',val)
     }
@@ -101,11 +101,26 @@
     })
 
     pwrbtn.addEventListener('click',()=>{
-        send('power')
+        if(power_state==0) {
+            send('power-on')
+            power_state=1;
+        }
+        else{
+            send('power-off')
+            power_state=0;
+        }
+        
     })
 
     swingbtn.addEventListener('click',()=>{
-        send('swing')
+        if(swing_state==0) {
+            send('swing-on')
+            swing_state=1;
+        }
+        else{
+            send('swing-off')
+            swing_state=0;
+        }
     })
 </script>
 </body>

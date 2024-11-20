@@ -35,6 +35,9 @@ io.on('connection', (socket) => {
     });
     socket.on('ACval',(val)=>{
         console.log('ACval : ',val )
+        exec(`./scripts/IRcapture.py -g17 -p -f ir-ac.json ${val}`, (error, stdout, stderr) => {
+      });
+
     })
 });
 
