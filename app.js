@@ -22,7 +22,10 @@ app.set('view engine','ejs')
 app.engine('ejs',ejsMate)
 app.set('views',path.join(__dirname,'views'))
 
-
+const {pins} = require('./gpio-config.json')
+const redPin = new Gpio(pins.red, 'out');  //20
+const greenPin = new Gpio(pins.green, 'out');  //21
+const bluePin = new Gpio(pins.blue, 'out');   //22
 io.on('connection', (socket) => {
     console.log('A user connected');
 
@@ -31,6 +34,12 @@ io.on('connection', (socket) => {
         const r = ( parsedColor & 0xff0000 ) >> 16
         const g = ( parsedColor & 0x00ff00 ) >>8
         const b = parsedColor & 0x0000ff
+        if(r==255) redPin.writeSync(1);
+        else redPin.writeSync(0);
+        if(g==255) greenPin.writeSync(1);
+        else greenPin.writeSync(0);
+        if(r==255) bluePin.writeSync(1);
+        else bluePin.writeSync(0);
         console.log(`${rgb}=> r : ${r} || g : ${g} || b : ${b}`)
     });
     socket.on('ACval',(val)=>{
