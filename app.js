@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
         else redPin.writeSync(0);
         if(g==255) greenPin.writeSync(1);
         else greenPin.writeSync(0);
-        if(r==255) bluePin.writeSync(1);
+        if(b==255) bluePin.writeSync(1);
         else bluePin.writeSync(0);
         console.log(`${rgb}=> r : ${r} || g : ${g} || b : ${b}`)
     });
@@ -55,6 +55,9 @@ app.get('/',(re,res)=>res.render('home',{title:"home"}))
 app.use('/pi',pi)
 app.get('/camera',(req,res)=>{
     res.render('sensors/camera',{title:"camera"})
+})
+app.get('/relay',(req,res)=>{
+    res.render('devices/relay',{ip:"192.168.0.150"})
 })
 app.get('/ac',(req,res)=>{
     res.render('devices/ac.ejs')
